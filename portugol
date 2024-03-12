@@ -1,0 +1,174 @@
+programa
+{
+        inclua biblioteca Util --> u
+
+        logico cabelo = verdadeiro
+        inteiro decisao = 0
+
+        cadeia itensBanho[4]
+        inteiro i = 0
+
+        cadeia itensColetados = ""
+
+        funcao prepararBanho()
+        {        
+                escreva("Tem toalha? ")
+                leia(decisao)
+                se(decisao == 0){
+                        itensBanho[i] = "Toalha"
+                        i = i + 1
+                }
+
+                escreva("Tem cabelo? ")
+                leia(decisao)
+                se(decisao > 0){
+                        escreva("Tem shampoo? ")
+                        leia(decisao)
+                        se(decisao == 0){
+                                itensBanho[i] = "Shampoo"
+                                i = i + 1
+                        }
+
+                        escreva("Tem condicionador? ")
+                        leia(decisao)
+                        se(decisao == 0){
+                                itensBanho[i] = "Condicionador"
+                                i = i + 1
+                        }
+                } senao {
+                        cabelo = falso
+                }
+
+                escreva("Tem sabonete? ")
+                leia(decisao)
+                se(decisao == 0){
+                        itensBanho[i] = "Sabonete"
+                        i = i + 1
+                }
+
+                //Guarda itens coletados
+                //Possui itens guardados?
+                se(i > 0){
+                        itensColetados = itensBanho[0]
+                        para(inteiro posicao = 1; posicao < i; posicao++)
+                        {
+                                itensColetados = itensColetados + ", " + itensBanho[posicao]
+                        }
+                        escreva("Ação: Buscar itens: ", itensColetados, "\n\n")
+                        carregando()
+                }
+
+                escreva("Está frio? ")
+                leia(decisao)
+                se(decisao > 0){
+                        escreva("Ação: Regular temperatura quente\n")
+                        carregando()
+                } senao {
+                        escreva("Ação: Regular temperatura morna\n")
+                        carregando()
+                }
+
+                escreva("Ação: Ligar registro\n")
+                carregando()
+
+                tomandoBanho()
+        }
+
+        funcao tomandoBanho()
+        {
+                escreva("Ação: Exanguar Corpo\n")
+                carregando()
+
+                se(cabelo){
+                        escreva("Ação: Passar shampoo\n")
+                        carregando()
+                        escreva("Ação: Exaguar cabelo\n")
+                        carregando()
+                        escreva("Ação: Passar condicionador\n")
+                        carregando()
+                        escreva("Ação: Exaguar cabelo\n")
+                        carregando()
+                }
+
+                escreva("Ação: Passar sabonete\n")
+                carregando()
+                escreva("Ação: Exaguar corpo\n")
+                carregando()
+                escreva("Ação: Desligar registro\n")
+                carregando()
+
+                finalizacao()
+        }
+
+        funcao finalizacao()
+        {
+                escreva("Ação: Pegar toalha\n")
+                carregando()
+                escreva("Ação: Passar toalha por todo corpo\n")
+                carregando()
+                escreva("Está bem seco? ")
+                leia(decisao)
+                logico corpoSeco = falso
+                enquanto(nao corpoSeco){
+                se(decisao > 0){
+                    corpoSeco = verdadeiro
+                } senao {
+                          escreva("\nAção: Passar toalha por todo corpo\n")
+                          carregando()
+                    escreva("Está bem seco? ")
+                    leia(decisao)
+                }
+                }
+                escreva("Ação: Vestir Roupa\n")
+                carregando()
+                escreva("Ação: Estender Toalha\n")
+                carregando()
+                escreva("Banho finalizado")
+
+        }
+
+        funcao carregando()
+        {
+                escreva("==========")
+                u.aguarde(200)
+                escreva("==========")
+                u.aguarde(300)
+                escreva("==========")
+                u.aguarde(200)
+                escreva("==========")
+                u.aguarde(200)
+                escreva("=============\n\n")
+                u.aguarde(400)
+        }
+
+        funcao inicio()
+        {
+                escreva("=====================================================\n")
+                escreva("Para as respotas, escreva 1 para SIM e 0 para NÃO\n")
+                escreva("=====================================================\n\n")
+                u.aguarde(1000)
+
+                escreva("Está fedido? ")
+                leia(decisao)
+
+                se(decisao > 0){
+                        escreva("\nAção: Ir até o banheiro\n")
+                        carregando()
+
+                        //Chamar funcao preparar o banho
+                        prepararBanho()
+                } senao {
+                        escreva("Vai sair? ")
+                        leia(decisao)
+
+
+
+                        se(decisao > 0){
+                                escreva("\nAção: Ir até o banheiro\n")
+                                carregando()
+                                //Chamar funcao preparar o banho
+                                prepararBanho()
+                        }
+                }
+        }
+}
